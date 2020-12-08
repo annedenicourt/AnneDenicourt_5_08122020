@@ -1,0 +1,25 @@
+header, footer {
+	background-color: #f3e9f1;
+}
+
+
+#produits {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.product-list img{
+	width: 100%;
+}
+
+#bouton {
+	background-color: #f3e9f1;
+}
+
+#erreur {
+	display: none;
+}
+
+.erreur_mess {
+	display: none;
+}
