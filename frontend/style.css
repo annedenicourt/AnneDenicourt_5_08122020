@@ -14,6 +14,8 @@ header, footer {
 
 #bouton {
 	background-color: #f3e9f1;
+	font-weight: bold;
+
 }
 
 #erreur {
@@ -22,4 +24,14 @@ header, footer {
 
 .erreur_mess {
 	display: none;
+}
+
+#erreur_mail {
+	color: red;
+	font-size: 0.8em;
+}
+
+#erreur_code {
+	color: red;
+	font-size: 0.8em;
 }

@@ -1,41 +1,43 @@
-// Contrôle du courriel en fin de saisie
-document.getElementById("mail").addEventListener("blur", function (e) {
-    // Correspond à une chaîne de la forme xxx@yyy.zzz
-    let mail = document.getElementById("mail");
-    let erreurMail = document.getElementById("erreur_mail");
-    let regexMail = /.+@.+\..+/;
-    let validiteMail = "";
-    if (!regexMail.test(e.target.value)) {
-        validiteMail = "Adresse mail invalide";
-        mail.style.color = "red";
-        erreurMail.style.color = "red";
-        erreurMail.style.fontSize = "12px";
-    }
-    document.getElementById("erreur_mail").textContent = validiteMail;
-
-});
-
-
-// Contrôle du code postal pendant la saisie
-document.getElementById("postalcode").addEventListener("input", function (e) {
-    // Correspond à une chaîne de nombre
-    let postalCode = document.getElementById("postalcode");
-    let erreurCode = document.getElementById("erreur_code");
-    let regexPostal = /[0-9]/;
-    let validitePostal = "";
-    if (!regexPostal.test(e.target.value)) {
-        validitePostal = "Code postal invalide. Saisir uniquement des chiffres";
-        postalCode.style.color = "red";
-        erreurCode.style.color = "red";
-        erreurCode.style.fontSize = "12px";
-    } 
-    document.getElementById("erreur_code").textContent = validitePostal;    
-});
-
-
-
-// Contrôle champs formulaire JQUERY
+// JQUERY
 $(document).ready(function(){
+
+
+// Validation mail       
+      $("#mail").blur(function(){
+
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        var emailaddressVal = $(this).val();
+         
+        if(!emailReg.test(emailaddressVal)) {
+            $('#erreur_mail').text('Adresse email non valide');
+        } else {
+            $('#erreur_mail').text('');
+        }
+        });  
+
+// Validation code postal
+      $("#postalcode").keyup(function(){
+
+          let value = jQuery(this).val();
+                value = value.replace(/[^0-9]+/g, '');
+                jQuery(this).val(value);
+
+          if ($("#postalcode").val().length <5) {
+            $("#postalcode").css({
+              borderColor: "red",
+              color:"red"
+            });
+            $('#erreur_code').text('Code postal non valide');      
+          } else {
+            $("#postalcode").css({
+              borderColor: "green",
+              color:"green"
+          });
+            $('#erreur_code').text('');
+          }
+        });
+
+// Contrôle champs formulaire       
 
         function verifier(champ) {
           if (champ.val() == 0){
@@ -67,8 +69,9 @@ $(document).ready(function(){
             }); 
             $("#erreur").css("display", "none");
             $(".erreur_mess").css("display", "none");
+            $('#erreur_mail').text('');
+            $('#erreur_code').text('');
             
         });
 
         });
-
