@@ -44,7 +44,7 @@
             <div id="navbarContent" class="collapse navbar-collapse">
               <ul class="navbar-nav w-100 d-flex justify-content-end">
                 <li class="nav-item">
-                  <a class="nav-link" href="index.html">ACCUEIL</a>
+                  <a class="nav-link" href="index.html">NOS PRODUITS</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="#"
@@ -76,18 +76,21 @@
                 <th class="text-center">Article</th>
                 <th class="text-center">Quantité</th>
                 <th class="text-center">Prix unitaire</th>
-                <th class="text-center">Prix total</th>
+                <th class="text-center"></th>
               </tr>
             </thead>
             <tbody id="ajout_panier"></tbody>
-            <tfoot id="products-footer"></tfoot>
+            <tr>
+              <td class="text-right font-weight-bold" colspan="2">TOTAL</td>
+              <td id="prix_total" class="text-center font-weight-bold"></td>
+            </tr>
           </table>
         </div>
-        <div id="panier_vide" class="text-center mb-4 p-4 border rounded"></div>
         <div class="text-center">
-          <button id="vider_panier" type="button" onclick="viderPanier()">
+          <button id="vider_panier" class="btn btn-secondary" type="button" onclick="viderPanier()">
             Vider le panier
           </button>
+          <div id="panier_vide" class="text-center p-4"></div>
         </div>
       </section>
       <section id="formulaire" class="container mt-4 pb-4">
@@ -98,34 +101,34 @@
             <p class="text-center mt-4">
               Renseignez vos coordonnées pour valider votre commande
             </p>
-            <label for="name">Nom</label>
+            <label for="name">NOM</label>
             <input type="text" id="name" class="champ" />
             <br />
             <div class="erreur_mess">Veuillez renseigner un nom</div>
             <br />
-            <label for="firstname">Prénom</label>
+            <label for="firstname">PRENOM</label>
             <input type="text" id="firstname" class="champ" />
             <br />
             <div class="erreur_mess">Veuillez renseigner un prénom</div>
             <br />
-            <label for="adress">Adresse</label>
+            <label for="adress">ADRESSE</label>
             <input type="text" id="adress" class="champ" />
             <br />
             <div class="erreur_mess">Veuillez renseigner une adresse</div>
             <br />
-            <label for="mail">E-mail</label>
+            <label for="mail">E-MAIL</label>
             <input type="email" id="mail" class="champ" />
             <br />
             <div id="erreur_mail"></div>
             <div class="erreur_mess">Veuillez renseigner une adresse mail</div>
             <br />
-            <label for="postalcode">Code postal</label>
+            <label for="postalcode">CODE POSTAL</label>
             <input type="text" id="postalcode" class="champ" />
             <br />
             <div id="erreur_code"></div>
             <div class="erreur_mess">Veuillez renseigner un code postal</div>
             <br />
-            <label for="city">Ville</label>
+            <label for="city">VIlLE</label>
             <input type="text" id="city" class="champ" />
             <br />
             <div class="erreur_mess">Veuillez renseigner une ville</div>
@@ -141,7 +144,7 @@
         </div>
       </section>
     </main>
-    <footer>
+    <footer class="bg-secondary text-white">
       <div class="mt-4">
         <div class="container">
           <div class="row">

@@ -1,7 +1,9 @@
-footer {
-	background-color: #f3e9f1;
+main a {
+	color: black;
 }
-
+footer a {
+	color:#fff;
+}
 #title_container {
 	text-align: right;
 	width: 55%;
@@ -43,6 +45,7 @@ footer {
 	line-height: 10px;
 	width: 20px;
 	padding: 0;
+	display: none;
 }
 
 #bouton_plus {
@@ -51,15 +54,15 @@ footer {
 	width: 20px;
 	padding: 0;
 }
-#bouton {
-	background-color: #f3e9f1;
-}
 
 
 /* PANIER*/
 
 #ligne_tableau td {
 	vertical-align: middle;
+}
+td img {
+	height: 60px;
 }
 
 #panier_vide {

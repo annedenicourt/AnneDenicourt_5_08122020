@@ -19,7 +19,7 @@ fetchPromise
                      <span>${price / 100}€</span></p>
                      <p class="card-text product-description">${description}</p>
                   </div>
-                  <button id="bouton" type="button" class="btn" onclick="window.location.href = 'produit.html?id=${_id}';">Voir le produit</button>
+                  <button type="button" class="btn btn-secondary" onclick="window.location.href = 'produit.html?id=${_id}';">Voir le produit</button>
                </div>
                </div>
                 `;

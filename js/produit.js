@@ -29,21 +29,20 @@ function ajoutHTML() {
       <img class=”image_produit” src="${camera.imageUrl}"  alt="appareil ${
     camera.name
   }">
-
       <h3 class="ml-4 mt-4">${camera.name}</h3>
-      <p class="description_produit ml-4">${camera.description}</p>
+      <p class="description_produit ml-4 mr-2">${camera.description}</p>
       <label for="quantite_choisie" class="ml-4">Quantité : </label>
-      <input onClick="prixQuantite()" step="number" placeholder="quantité" id="quantite_choisie" class="nbr" type="number" min="1" max="99" value="1"></input>
-      <p class="prix_produit mt-4 ml-4"><span>${camera.price / 100}€</span></p>
+      <input step="number" placeholder="quantité" id="quantite_choisie" class="nbr" type="number" min="1" max="99" value="1"></input>
+      <p class="prix_produit mt-4 ml-4"><span>Prix : ${camera.price / 100}€</span></p>
     </div>
   `;
 }
 
-function prixQuantite() {
+/*function prixQuantite() {
   let $cameraPrice = document.querySelector(".prix_produit");
   let quantite = document.querySelector("#quantite_choisie").value;
   $cameraPrice.innerHTML = `${(camera.price / 100) * quantite} €`;
-}
+}*/
 
 //Ajout produit au panier
 function ajoutPanier() {

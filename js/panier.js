@@ -14,9 +14,9 @@ function infosHTML() {
   document.getElementById("ajout_panier").innerHTML += `
     <tbody id="products-tablebody">
     <tr id="ligne_tableau">
-    <td class="text-center">${infosProduit.name} <br/> Objectif : ${
-    infosProduit.lenses
-  }</td>
+    <td class="text-center"><img src="${infosProduit.imageUrl}"  alt="appareil ${
+      infosProduit.name}"> <br/>${infosProduit.name} <br/> Objectif : ${infosProduit.lenses
+  } </td>
     <td class="text-center">
     <button type="button" onclick="quantiteMoins()" id="bouton_moins" class="btn btn-secondary btn-sm">-</button>
     <span id="quantite_nombre" class="quantite_produit">${
@@ -25,43 +25,64 @@ function infosHTML() {
     <button type="button" onclick="quantitePlus()" id="bouton_plus" class="btn btn-secondary btn-sm">+</button>
     </td>
     <td id="prix_unite" class="text-center">${infosProduit.price + " €"}</td>
-    <td id="prix_total"class="text-center">${
-      infosProduit.totalPrice + " €"
-    }</td>
+    <td class="text-center"><i id="supp_produit" onclick="annulerArticle()" type="button" class="fas fa-trash-alt" title="Supprimer le produit du panier"></i>
+    </td>
     </tr>
+    
     </tbody>`;
+}
+
+function sousTotal() {
+  let sousTotal = document.getElementById("prix_total")
+  let totalPrice = infosProduit.totalPrice + "€"
+  sousTotal.innerhtml += totalPrice
 }
 
 function tableauVide() {
   //on efface le bouton, le panier, le formulaire lorsque le panier est vide
   document.getElementById(
     "panier_vide"
-).innerHTML += `<p>Votre panier est vide</p><i class="fas fa-shopping-cart fa-1x"></i
-  >`;
+).innerHTML += `<p>Votre panier est vide <br/> <i class="fas fa-shopping-cart fa-1x"></i
+></p>`;
   document.getElementById("tableau_panier").style.display = "none";
   document.getElementById("vider_panier").style.display = "none";
   document.getElementById("formulaire").style.display = "none";
-}
-
-function quantitePlus() {
-  let quantiteNombre = document.getElementById("quantite_nombre");
-  let ajoutQuantite = ++infosProduit.quantite;
-  quantiteNombre.textContent = ajoutQuantite;
-  let prixTotal = document.getElementById("prix_total");
-  let ajoutTotal = infosProduit.price * infosProduit.quantite;
-  prixTotal.textContent = `${ajoutTotal} €`;
 }
 
 function quantiteMoins() {
   let quantiteNombre = document.getElementById("quantite_nombre");
   let retraitQuantite = --infosProduit.quantite;
   quantiteNombre.textContent = retraitQuantite;
-  let prixTotal = document.getElementById("prix_total");
+  let sousTotal = document.getElementById("prix_total");
   let ajoutTotal = infosProduit.price * infosProduit.quantite;
-  prixTotal.textContent = `${ajoutTotal} €`;
+  sousTotal.textContent = `${ajoutTotal} €`;
+  if (retraitQuantite <= 1) {
+    document.getElementById("bouton_moins").style.display = "none"
+  } 
 }
 
-//Condition pour afficher et utiliser notre panier
+function quantitePlus() {
+  let quantiteNombre = document.getElementById("quantite_nombre");
+  let ajoutQuantite = ++infosProduit.quantite;
+  quantiteNombre.textContent = ajoutQuantite;
+  let sousTotal = document.getElementById("prix_total");
+  let ajoutTotal = infosProduit.price * infosProduit.quantite;
+  sousTotal.textContent = `${ajoutTotal} €`;
+  if (ajoutQuantite >1) {
+    document.getElementById("bouton_moins").style.display = "inline"
+  } 
+}
+
+function annulerArticle (i) {
+  products.splice(i, 1);
+   localStorage.clear();
+   // Mise à jour du nouveau panier avec suppression de l'article
+   localStorage.setItem("panier", JSON.stringify(panier));
+   //Mise à jour de la page pour affichage de la suppression au client
+   window.location.reload();
+ };
+
+//Conditions pour afficher et utiliser notre panier
 if (!panier) {
   //On vérifie si le panier existe
   //Si non
@@ -86,9 +107,9 @@ if (!panier) {
       //Boucle pour incrémenter le tableau
       infosProduit = result;
       infosHTML();
+      sousTotal();
     });
   } else if (products.length >= 1 && localStorage.order) {
-    //Si on a déjà une commande affiche tableEmpty
     tableauVide();
   }
 }
