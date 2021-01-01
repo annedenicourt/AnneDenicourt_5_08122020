@@ -58,7 +58,7 @@ footer a {
 
 /* PANIER*/
 
-#ligne_tableau td {
+#tableau_panier td {
 	vertical-align: middle;
 }
 td img {
@@ -110,8 +110,6 @@ td img {
 }
 
 }
-
-
 @media screen and (max-width: 499px)
 {
 #banner {

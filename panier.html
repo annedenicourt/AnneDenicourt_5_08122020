@@ -26,39 +26,38 @@
     <title>Orinoco - Panier</title>
   </head>
   <body>
-    <header class="mb-4">
-      <div class="container">
-        <div class="row d-block">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html"
-              ><img class="mr-3" src="logo.png" height="60" alt="Site logo"
-            /></a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarContent"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="navbarContent" class="collapse navbar-collapse">
-              <ul class="navbar-nav w-100 d-flex justify-content-end">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">NOS PRODUITS</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#"
-                    >PANIER <i class="fas fa-shopping-cart fa-1x"></i
-                  ></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">COMMANDE</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html"
+          ><img class="mr-3" src="logo.png" height="60" alt="Site logo"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarContent" class="collapse navbar-collapse">
+          <ul class="navbar-nav w-100 d-flex justify-content-end">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">NOS PRODUITS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="panier.html"
+                >PANIER <i class="fas fa-shopping-cart fa-1x"></i
+              ></a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">COMMANDE</a></li>
+            <li class="cart">
+              <a href="panier.html">
+                  Panier<span>0</span>
+              </a>
+          </li>
+          </ul>
         </div>
-      </div>
+      </nav>
     </header>
 
     <section id="banner">
@@ -76,14 +75,17 @@
                 <th class="text-center">Article</th>
                 <th class="text-center">Quantité</th>
                 <th class="text-center">Prix unitaire</th>
+                <th class="text-center">Total</th>
                 <th class="text-center"></th>
               </tr>
             </thead>
             <tbody id="ajout_panier"></tbody>
+            <tfooter>
             <tr>
-              <td class="text-right font-weight-bold" colspan="2">TOTAL</td>
-              <td id="prix_total" class="text-center font-weight-bold"></td>
+              <td class="text-right font-weight-bold" colspan="3">TOTAL</td>
+              <td id="prix_total2" class="text-center font-weight-bold"></td>
             </tr>
+            </tfooter>
           </table>
         </div>
         <div class="text-center">
