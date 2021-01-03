@@ -41,20 +41,15 @@
         </button>
         <div id="navbarContent" class="collapse navbar-collapse">
           <ul class="navbar-nav w-100 d-flex justify-content-end">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="index.html">NOS PRODUITS</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="panier.html"
-                >PANIER <i class="fas fa-shopping-cart fa-1x"></i
+                >PANIER <i class="fas fa-shopping-cart fa-1x"><span id="cart_number"></span></i
               ></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">COMMANDE</a></li>
-            <li class="cart">
-              <a href="panier.html">
-                  Panier<span>0</span>
-              </a>
-          </li>
           </ul>
         </div>
       </nav>
@@ -83,7 +78,7 @@
             <tfooter>
             <tr>
               <td class="text-right font-weight-bold" colspan="3">TOTAL</td>
-              <td id="prix_total2" class="text-center font-weight-bold"></td>
+              <td id="prix_total" class="text-center font-weight-bold"></td>
             </tr>
             </tfooter>
           </table>
@@ -91,6 +86,9 @@
         <div class="text-center">
           <button id="vider_panier" class="btn btn-secondary" type="button" onclick="viderPanier()">
             Vider le panier
+          </button>
+          <button id="valid_commande" class="btn btn-success" type="button">
+            <a href="#formulaire">Valider votre commande</a>
           </button>
           <div id="panier_vide" class="text-center p-4"></div>
         </div>
@@ -140,8 +138,8 @@
                 Vous n'avez pas rempli correctement les champs du formulaire !
               </p>
             </div>
-            <input type="submit" id="envoi" value="Envoyer" />
-            <input type="reset" id="rafraichir" value="Rafraîchir" />
+            <input type="reset" id="rafraichir" value="Effacer" class="btn btn-secondary" />
+            <input type="submit" id="envoi" value="Commander" class="btn btn-success" />
           </form>
         </div>
       </section>
@@ -172,6 +170,7 @@
       </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/cartnumber.js"></script>
     <script type="text/javascript" src="js/panier.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

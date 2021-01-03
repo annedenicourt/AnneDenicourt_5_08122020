@@ -47,6 +47,7 @@ function ajoutPanier() {
           description : article.description,
           price : article.price/100,
           quantite : 1,
+          subTotal : article.price/100*1
         })
         window.localStorage.setItem("panier", JSON.stringify(panier))
         console.log("Le produit a été ajouté au panier");
@@ -75,3 +76,4 @@ function ajoutPanier() {
 }
 
 ajoutContent();
+cartNumber()

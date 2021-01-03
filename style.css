@@ -4,6 +4,10 @@ main a {
 footer a {
 	color:#fff;
 }
+
+#cart_number{
+	color: red;
+}
 #title_container {
 	text-align: right;
 	width: 55%;
@@ -39,22 +43,23 @@ footer a {
 }
 
 /* BOUTONS*/
-
+.fa-caret-square-left{
+	color:grey;
+	cursor: pointer;
+}
+.fa-caret-square-right{
+	color:grey;
+	cursor: pointer;
+}
 #bouton_moins {
-	height: 20px;
-	line-height: 10px;
-	width: 20px;
-	padding: 0;
 	display: none;
 }
-
-#bouton_plus {
-	height: 20px;
-	line-height: 10px;
-	width: 20px;
-	padding: 0;
+#valid_commande {
+	font-weight: bold;
 }
-
+#valid_commande a {
+color: #fff;
+}
 
 /* PANIER*/
 

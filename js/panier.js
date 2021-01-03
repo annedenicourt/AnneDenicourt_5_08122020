@@ -1,52 +1,52 @@
 //Declaration variables
 const panier = JSON.parse(localStorage.getItem("panier"));
-let article;
 
 //Condition pour afficher le panier
 if (panier) {
-  ligneTableau();
+  ligneTableau();  
 } else {
   tableauVide();
 }
 
+//Boucle pour importer données de chaque article panier
 function ligneTableau() {
   article = panier;
   article.forEach((result, index) => {
-    (article = result), index;
-    infosHTML(index);
+    infosHTML(result,index);
   });
+  totalPanier()
+  cartNumber()
 }
 
-/*function ligneTableau() {
- for (let i = 0; i < panier.length; i++) {
-          article = panier[i] //Récupère les infos pour chaque élément du panier
-          infosHTML()
-        }
-      }*/
-
 //Ajout html pour chaque produit importé dans le panier
-function infosHTML(index) {
+function infosHTML(result, index) {
   document.getElementById("ajout_panier").innerHTML += `
     <tbody id="products-tablebody">
     <tr id="ligne_tableau${index}">
-    <td class="text-center"><img src="${article.image}"  alt="appareil ${
-    article.name
-  }"> <br/> ${article.name} <br/> Objectif : ${article.lenses}</td>
+    <td class="text-center"><img src="${result.image}"  alt="appareil ${
+    result.name
+  }"> <br/> ${result.name} <br/> Objectif : ${result.lenses}</td>
     <td class="text-center">
-    <button type="button" onclick="quantiteMoins(${index})" id="bouton_moins${index}" class="btn btn-secondary btn-sm">-</button>
-    <span id="quantite_nombre${index}" class="quantite_produit">${
-    article.quantite
-  }</span>
-    <button type="button" onclick="quantitePlus(${index})" id="bouton_plus${index}" class="btn btn-secondary btn-sm">+</button>
+    <i onclick="quantiteMoins(${index})" id="bouton_moins" class="fas fa-caret-square-left"></i>
+    <span id="quantite_nombre${index}" class="quantite_produit">${result.quantite}</span>
+    <i onclick="quantitePlus(${index})" id="bouton_plus${index}" class="fas fa-caret-square-right"></i>
     </td>
-    <td id="prix_unite${index}" class="text-center">${article.price + " €"}</td>
-    <td id="sous_total${index}"class="text-center">${
-    article.quantite * article.price + " €"
-  } </td>
+    <td id="prix_unite${index}" class="text-center">${result.price + " €"}</td>
+    <td id="sous_total${index}"class="subtotal text-center">${result.subTotal + " €"}</td>
     <td class="text-center"><i id="supp_produit" onclick="annulerArticle()" type="button" class="fas fa-trash-alt" title="Supprimer le produit du panier"></i>
     </td>
     </tr>
     </tbody>`;
+}
+
+function totalPanier() {
+  let total = 0;
+  panier.forEach((result, index) => {
+    total = total + (panier[index].price * panier[index].quantite)
+    console.log(total)
+  }) 
+  document.getElementById("prix_total").textContent = total +" €"
+  localStorage.setItem("totalPanier", total);
 }
 
 //pour faire disparaitre le bouton, le panier, le formulaire lorsque le panier est vide
@@ -58,6 +58,7 @@ function tableauVide() {
   document.getElementById("tableau_panier").style.display = "none";
   document.getElementById("vider_panier").style.display = "none";
   document.getElementById("formulaire").style.display = "none";
+  document.getElementById("valid_commande").style.display = "none";
 }
 
 //pour vider le panier et le localStorage
@@ -78,28 +79,30 @@ function annulerArticle(i) {
 
 function quantitePlus(index) {
   let quantite = document.getElementById(`quantite_nombre${index}`);
-  let ajoutQuantite = ++article.quantite;
+  let ajoutQuantite = ++panier[index].quantite;
   quantite.textContent = ajoutQuantite;
-  console.log(panier);
-  currentQuantity = document.getElementById(`quantite_nombre${index}`)
-    .textContent;
-  console.log(currentQuantity);
+  let sousTotal = document.getElementById(`sous_total${index}`);
+  let ajoutTotal = panier[index].price * panier[index].quantite;
+  sousTotal.textContent = `${ajoutTotal} €`;
   localStorage.setItem("panier", JSON.stringify(panier));
+  totalPanier()
+  if (ajoutQuantite > 1) {
+    document.getElementById("bouton_moins").style.display = "inline"
+  } 
 }
 
 function quantiteMoins(index) {
   let quantite = document.getElementById(`quantite_nombre${index}`);
-  let retraitQuantite = --article.quantite;
+  let retraitQuantite = --panier[index].quantite;
   quantite.textContent = retraitQuantite;
-  console.log(panier);
-  currentQuantity = document.getElementById(`quantite_nombre${index}`)
-    .textContent;
-  console.log(currentQuantity);
+  let sousTotal = document.getElementById(`sous_total${index}`);
+  let ajoutTotal = panier[index].price * panier[index].quantite;
+  sousTotal.textContent = `${ajoutTotal} €`;
   localStorage.setItem("panier", JSON.stringify(panier));
-
+  totalPanier()
   if (retraitQuantite <= 1) {
-    document.getElementById(`bouton_moins${index}`).style.display = "none";
-  }
+    document.getElementById("bouton_moins").style.display = "none"
+  } 
 }
 
 // FORMULAIRE JQUERY

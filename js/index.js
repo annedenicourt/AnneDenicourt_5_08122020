@@ -24,4 +24,5 @@ fetchPromise.then(response => {
                 `
             })
 }))
+cartNumber()
 
