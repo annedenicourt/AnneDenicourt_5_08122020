@@ -24,5 +24,3 @@ fetchPromise.then(response => {
                 `
             })
 }))
-cartNumber()
-

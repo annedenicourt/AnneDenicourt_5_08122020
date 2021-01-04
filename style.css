@@ -6,8 +6,12 @@ footer a {
 }
 
 #cart_number{
-	color: red;
+	font-weight: bold;
+
 }
+.fa-shopping-cart {
+}
+
 #title_container {
 	text-align: right;
 	width: 55%;
@@ -55,10 +59,18 @@ footer a {
 	display: none;
 }
 #valid_commande {
-	font-weight: bold;
 }
 #valid_commande a {
-color: #fff;
+text-decoration: none;
+}
+
+#bouton_modal1 a {
+	text-decoration: none;
+	color:#fff;
+}
+#bouton_modal2 a {
+	text-decoration: none;
+	color:#fff;
 }
 
 /* PANIER*/

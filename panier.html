@@ -46,8 +46,8 @@
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="panier.html"
-                >PANIER <i class="fas fa-shopping-cart fa-1x"><span id="cart_number"></span></i
-              ></a>
+                >PANIER <i class="fas fa-shopping-cart"></i
+              ><span id="cart_number"></span></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">COMMANDE</a></li>
           </ul>
@@ -84,12 +84,12 @@
           </table>
         </div>
         <div class="text-center">
-          <button id="vider_panier" class="btn btn-secondary" type="button" onclick="viderPanier()">
+          <button id="vider_panier" class="btn btn-outline-secondary" type="button" onclick="viderPanier()">
             Vider le panier
           </button>
-          <button id="valid_commande" class="btn btn-success" type="button">
-            <a href="#formulaire">Valider votre commande</a>
-          </button>
+          <a href="#formulaire"><button id="valid_commande" class="btn btn-outline-success" type="button">
+            Poursuivre votre commande
+          </button></a>
           <div id="panier_vide" class="text-center p-4"></div>
         </div>
       </section>
@@ -99,7 +99,7 @@
             class="text-center col-12 col-md-8 col-lg-6 mx-auto pb-4 border border-secondary rounded"
           >
             <p class="text-center mt-4">
-              Renseignez vos coordonnées pour valider votre commande
+              Veuillez remplir le formulaire pour finaliser votre commande
             </p>
             <label for="name">NOM</label>
             <input type="text" id="name" class="champ" />
@@ -123,7 +123,7 @@
             <div class="erreur_mess">Veuillez renseigner une adresse mail</div>
             <br />
             <label for="postalcode">CODE POSTAL</label>
-            <input type="text" id="postalcode" class="champ" />
+            <input type="text" id="postalcode" class="champ"/>
             <br />
             <div id="erreur_code"></div>
             <div class="erreur_mess">Veuillez renseigner un code postal</div>
@@ -138,7 +138,7 @@
                 Vous n'avez pas rempli correctement les champs du formulaire !
               </p>
             </div>
-            <input type="reset" id="rafraichir" value="Effacer" class="btn btn-secondary" />
+            <input type="reset" id="rafraichir" value="Effacer" class="btn btn-outline-secondary" />
             <input type="submit" id="envoi" value="Commander" class="btn btn-success" />
           </form>
         </div>
@@ -170,6 +170,7 @@
       </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="js/cartnumber.js"></script>
     <script type="text/javascript" src="js/panier.js"></script>
     <script

@@ -25,7 +25,6 @@ function ajoutHTML(article) {
   `
     <div class="affichage_produit">
       <img class=”image_produit” src="${article.imageUrl}"  alt="appareil ${article.name}">
-
       <h3 class="ml-4 mt-4">${article.name}</h3>
       <p class="description_produit ml-4">${article.description}</p>
       <p class="prix_produit mt-4 ml-4"><span>${article.price/100}€</span></p>
@@ -52,28 +51,25 @@ function ajoutPanier() {
         window.localStorage.setItem("panier", JSON.stringify(panier))
         console.log("Le produit a été ajouté au panier");
         //swal("Super !", "L'article a été ajouté au panier", "success");
-  document.getElementById("pop_up").innerHTML +=
-  `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title text-center" id="exampleModalLongTitle">Super !</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Vous avez ajouté un produit au panier
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary"><a href="index.html">Continuer vos achats<a></button>
-                  <button type="button" class="btn btn-primary"><a href="panier.html">Voir votre panier<a></button>
-                </div>
+        document.getElementById("pop_up").innerHTML +=
+        `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
+            <div class="modal-body font-weight-bold">Super !</div>
+            <div class="modal-body font-weight-bold">Vous avez ajouté un produit au panier</div>
+            <div class="modal-footer justify-content-center">
+              <button id="bouton_modal1" type="button" class="btn btn-success"><a href="index.html">Continuer vos achats</a></button>
+              <button id="bouton_modal2" type="button" class="btn btn-secondary"><a href="panier.html">Voir votre panier</a></button>
             </div>
-          </div>`
+            </div>
+          </div>
+        </div>`
       }
 }
 
 ajoutContent();
-cartNumber()

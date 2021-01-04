@@ -1,23 +1,20 @@
-//Declaration variables
 const panier = JSON.parse(localStorage.getItem("panier"));
 
 //Condition pour afficher le panier
 if (panier) {
-  ligneTableau();  
+  ligneTableau();
 } else {
   tableauVide();
 }
-
 //Boucle pour importer données de chaque article panier
 function ligneTableau() {
   article = panier;
   article.forEach((result, index) => {
-    infosHTML(result,index);
+    infosHTML(result, index);
   });
-  totalPanier()
-  cartNumber()
+  totalPanier();
+  cartNumber();
 }
-
 //Ajout html pour chaque produit importé dans le panier
 function infosHTML(result, index) {
   document.getElementById("ajout_panier").innerHTML += `
@@ -28,27 +25,41 @@ function infosHTML(result, index) {
   }"> <br/> ${result.name} <br/> Objectif : ${result.lenses}</td>
     <td class="text-center">
     <i onclick="quantiteMoins(${index})" id="bouton_moins" class="fas fa-caret-square-left"></i>
-    <span id="quantite_nombre${index}" class="quantite_produit">${result.quantite}</span>
+    <span id="quantite_nombre${index}" class="quantite_produit">${
+    result.quantite
+  }</span>
     <i onclick="quantitePlus(${index})" id="bouton_plus${index}" class="fas fa-caret-square-right"></i>
     </td>
     <td id="prix_unite${index}" class="text-center">${result.price + " €"}</td>
-    <td id="sous_total${index}"class="subtotal text-center">${result.subTotal + " €"}</td>
+    <td id="sous_total${index}"class="subtotal text-center">${
+    result.subTotal + " €"
+  }</td>
     <td class="text-center"><i id="supp_produit" onclick="annulerArticle()" type="button" class="fas fa-trash-alt" title="Supprimer le produit du panier"></i>
     </td>
     </tr>
     </tbody>`;
 }
-
+//calcul et affichage du prix total panier
 function totalPanier() {
   let total = 0;
   panier.forEach((result, index) => {
-    total = total + (panier[index].price * panier[index].quantite)
-    console.log(total)
-  }) 
-  document.getElementById("prix_total").textContent = total +" €"
+    total = total + panier[index].price * panier[index].quantite;
+    console.log(total);
+  });
+  document.getElementById("prix_total").textContent = total + " €";
   localStorage.setItem("totalPanier", total);
 }
-
+//pour afficher le nombre de produits panier dans le menu nav
+function cartNumber() {
+  let inCart = 0;
+  console.log(typeof inCart);
+  panier.forEach((result, index) => {
+    inCart = inCart + 1;
+    console.log(inCart);
+  });
+  localStorage.setItem("inCart", inCart);
+  document.getElementById("cart_number").textContent = inCart;
+}
 //pour faire disparaitre le bouton, le panier, le formulaire lorsque le panier est vide
 function tableauVide() {
   document.getElementById(
@@ -60,23 +71,21 @@ function tableauVide() {
   document.getElementById("formulaire").style.display = "none";
   document.getElementById("valid_commande").style.display = "none";
 }
-
 //pour vider le panier et le localStorage
 function viderPanier() {
   localStorage.clear();
   location.reload();
 }
-
-// Mise à jour du nouveau panier après suppression de l'article
+// pour retirer article du panier
 function annulerArticle(i) {
   panier.splice(i, 1);
   localStorage.clear();
-  // Mise à jour du nouveau panier avec suppression de l'article
+  // Mise à jour du nouveau panier après suppression de l'article
   localStorage.setItem("panier", JSON.stringify(panier));
   //Mise à jour de la page pour affichage de la suppression au client
   window.location.reload();
 }
-
+//pour ajouter quantite dans le panier
 function quantitePlus(index) {
   let quantite = document.getElementById(`quantite_nombre${index}`);
   let ajoutQuantite = ++panier[index].quantite;
@@ -85,12 +94,12 @@ function quantitePlus(index) {
   let ajoutTotal = panier[index].price * panier[index].quantite;
   sousTotal.textContent = `${ajoutTotal} €`;
   localStorage.setItem("panier", JSON.stringify(panier));
-  totalPanier()
+  totalPanier();
   if (ajoutQuantite > 1) {
-    document.getElementById("bouton_moins").style.display = "inline"
-  } 
+    document.getElementById("bouton_moins").style.display = "inline";
+  }
 }
-
+//pour retirer quantite dans le panier
 function quantiteMoins(index) {
   let quantite = document.getElementById(`quantite_nombre${index}`);
   let retraitQuantite = --panier[index].quantite;
@@ -99,79 +108,88 @@ function quantiteMoins(index) {
   let ajoutTotal = panier[index].price * panier[index].quantite;
   sousTotal.textContent = `${ajoutTotal} €`;
   localStorage.setItem("panier", JSON.stringify(panier));
-  totalPanier()
+  totalPanier();
   if (retraitQuantite <= 1) {
-    document.getElementById("bouton_moins").style.display = "none"
-  } 
+    document.getElementById("bouton_moins").style.display = "none";
+  }
 }
 
-// FORMULAIRE JQUERY
-$(document).ready(function () {
-  // Validation mail
-  $("#mail").blur(function () {
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    var emailaddressVal = $(this).val();
+// FORMULAIRE
 
-    if (!emailReg.test(emailaddressVal)) {
-      $("#erreur_mail").text("Adresse email non valide");
-    } else {
-      $("#erreur_mail").text("");
-    }
-  });
+document.querySelector("#formulaire").addEventListener("submit", () => {
+  const mail = document.querySelector("#mail");
+  const postalCode = document.querySelector("#postalcode");
+  const champ = document.querySelector(".champ");
 
-  // Validation code postal
-  $("#postalcode").keyup(function () {
-    let value = jQuery(this).val();
-    value = value.replace(/[^0-9]+/g, "");
-    jQuery(this).val(value);
+  if (champ.value.trim().length < 1) {
+    alert(
+      "Formulaire non valide ! Merci de renseigner correctement le formulaire"
+    );
+    return;
+  } else {
+    let order = {
+      contact: {
+        firstName: document.querySelector("#firstname").value.trim(),
+        name: document.querySelector("#name").value.trim(),
+        adress: document.querySelector("#adress").value.trim(),
+        postalCode: document.querySelector("#postalcode").value.trim(),
+        city: document.querySelector("#city").value.trim(),
+        email: document.querySelector("#mail").value.trim(),
+      },
+    };
+    console.log(order);
 
-    if ($("#postalcode").val().length < 5) {
-      $("#postalcode").css({
-        borderColor: "red",
-        color: "red",
-      });
-      $("#erreur_code").text("Code postal non valide");
-    } else {
-      $("#postalcode").css({
-        borderColor: "green",
-        color: "green",
-      });
-      $("#erreur_code").text("");
-    }
-  });
-
-  // Contrôle champs formulaire
-  function verifier(champ) {
-    if (champ.val() == 0) {
-      $("#erreur").css({
-        display: "block",
-        color: "red",
-      });
-      $(".erreur_mess").css({
-        display: "block",
-        color: "red",
-      });
-    }
-  }
-
-  $("#envoi").click(function (e) {
-    e.preventDefault();
-    verifier($("#name"));
-    verifier($("#firstname"));
-    verifier($("#adress"));
-    verifier($("#mail"));
-    verifier($("#postalcode"));
-    verifier($("#city"));
-  });
-
-  $("#rafraichir").click(function () {
-    $(".champ").css({
-      borderColor: "#ccc",
-      color: "#555",
+    const products = [];
+    const totalPanier = localStorage.getItem("totalPanier");
+    //pour chaque produit, on pousse son identifiant dans le tableau
+    panier.forEach((result) => {
+      products.push(result.id);
     });
-    $("#erreur").css("display", "none");
-    $(".erreur_mess").css("display", "none");
-    $("#erreur_mail").text("");
-    $("#erreur_code").text("");
-  });
+    console.log(products);
+    console.log(totalPanier);
+
+    const request = new Request(
+      "https://oc-p5-api.herokuapp.com/api/cameras/order",
+      {
+        method: "POST",
+        body: JSON.stringify({ contact, products }),
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+      }
+    );
+    console.log(request);
+
+    fetch(request)
+      .then((response) => response.json())
+      .then((response) => {
+        let getOrderId = response.orderId;
+        let infoConf = { getOrderId, totalPanier };
+        localStorage.setItem("checkout", JSON.stringify(infoConf));
+      });
+  }
+});
+
+document.querySelector("#mail").addEventListener("blur", () => {
+  const mail = document.querySelector("#mail").value;
+  const regexEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; //Utilisation de regex
+  if (!regexEmail.test(mail)) {
+    document.querySelector("#erreur_mail").textContent =
+      "Adresse email non valide";
+  }
+});
+
+document.querySelector("#postalcode").addEventListener("blur", () => {
+  const postalCode = document.querySelector("#postalcode").value;
+  const regexEmail = /[0-9]{5}/; //Utilisation de regex
+  if (!regexEmail.test(postalCode)) {
+    document.querySelector("#erreur_code").textContent =
+      "Code postal non valide. 5 chiffres obligatoires";
+  }
+});
+
+document.querySelector("#rafraichir").addEventListener("click", () => {
+  document.querySelector("#erreur_mail").textContent = "";
+  document.querySelector("#erreur_code").textContent = "";
 });
