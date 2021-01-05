@@ -4,7 +4,7 @@ let article = null;
 //Appel URL + API + fonctions pour afficher le produit
 function ajoutContent () {
   let id = new URL(window.location).searchParams.get('id')
-fetch(`${"https://oc-p5-api.herokuapp.com/api/cameras"}/${id}`) //Rappel notre api + l'id de notre produit
+fetch(`${"https://oc-p5-api.herokuapp.com/api/cameras"}/${id}`)
     .then(response => response.json()).then (data => {
         
         article = data
@@ -60,8 +60,11 @@ function ajoutPanier() {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-            <div class="modal-body font-weight-bold">Super !</div>
-            <div class="modal-body font-weight-bold">Vous avez ajouté un produit au panier</div>
+            <div class="modal-body text-center">
+              <i class="fas fa-camera-retro fa-2x mb-4"></i>
+              <div class="font-weight-bold mb-4">Super !</div>
+              <div class="font-weight-bold">Vous avez ajouté un produit au panier</div>
+            </div>
             <div class="modal-footer justify-content-center">
               <button id="bouton_modal1" type="button" class="btn btn-success"><a href="index.html">Continuer vos achats</a></button>
               <button id="bouton_modal2" type="button" class="btn btn-secondary"><a href="panier.html">Voir votre panier</a></button>

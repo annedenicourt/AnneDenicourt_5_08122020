@@ -52,10 +52,8 @@ function totalPanier() {
 //pour afficher le nombre de produits panier dans le menu nav
 function cartNumber() {
   let inCart = 0;
-  console.log(typeof inCart);
   panier.forEach((result, index) => {
     inCart = inCart + 1;
-    console.log(inCart);
   });
   localStorage.setItem("inCart", inCart);
   document.getElementById("cart_number").textContent = inCart;
@@ -64,8 +62,12 @@ function cartNumber() {
 function tableauVide() {
   document.getElementById(
     "panier_vide"
-  ).innerHTML += `<p>Votre panier est vide <br/> <i class="fas fa-shopping-cart fa-1x"></i
-></p>`;
+  ).innerHTML += `
+    <div class="container col-10 text-center border shadow bg-white rounded p-4 ">
+      <h3 class="mb-4">Votre panier est vide</h3>
+      <i class="fas fa-shopping-cart fa-1x"></i>
+    </div>`
+  ;
   document.getElementById("tableau_panier").style.display = "none";
   document.getElementById("vider_panier").style.display = "none";
   document.getElementById("formulaire").style.display = "none";
@@ -114,63 +116,9 @@ function quantiteMoins(index) {
   }
 }
 
-// FORMULAIRE
+// FORMULAIRE + REQUETE POST
 
-document.querySelector("#formulaire").addEventListener("submit", () => {
-  const mail = document.querySelector("#mail");
-  const postalCode = document.querySelector("#postalcode");
-  const champ = document.querySelector(".champ");
-
-  if (champ.value.trim().length < 1) {
-    alert(
-      "Formulaire non valide ! Merci de renseigner correctement le formulaire"
-    );
-    return;
-  } else {
-    let order = {
-      contact: {
-        firstName: document.querySelector("#firstname").value.trim(),
-        name: document.querySelector("#name").value.trim(),
-        adress: document.querySelector("#adress").value.trim(),
-        postalCode: document.querySelector("#postalcode").value.trim(),
-        city: document.querySelector("#city").value.trim(),
-        email: document.querySelector("#mail").value.trim(),
-      },
-    };
-    console.log(order);
-
-    const products = [];
-    const totalPanier = localStorage.getItem("totalPanier");
-    //pour chaque produit, on pousse son identifiant dans le tableau
-    panier.forEach((result) => {
-      products.push(result.id);
-    });
-    console.log(products);
-    console.log(totalPanier);
-
-    const request = new Request(
-      "https://oc-p5-api.herokuapp.com/api/cameras/order",
-      {
-        method: "POST",
-        body: JSON.stringify({ contact, products }),
-        headers: new Headers({
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }),
-      }
-    );
-    console.log(request);
-
-    fetch(request)
-      .then((response) => response.json())
-      .then((response) => {
-        let getOrderId = response.orderId;
-        let infoConf = { getOrderId, totalPanier };
-        localStorage.setItem("checkout", JSON.stringify(infoConf));
-      });
-  }
-});
-
+//Evenement pour vérifier le champ mail
 document.querySelector("#mail").addEventListener("blur", () => {
   const mail = document.querySelector("#mail").value;
   const regexEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; //Utilisation de regex
@@ -180,6 +128,7 @@ document.querySelector("#mail").addEventListener("blur", () => {
   }
 });
 
+//Evenement pour vérifier le champ postalcode
 document.querySelector("#postalcode").addEventListener("blur", () => {
   const postalCode = document.querySelector("#postalcode").value;
   const regexEmail = /[0-9]{5}/; //Utilisation de regex
@@ -189,7 +138,68 @@ document.querySelector("#postalcode").addEventListener("blur", () => {
   }
 });
 
+//Evenement pour effacer le formulaire
 document.querySelector("#rafraichir").addEventListener("click", () => {
   document.querySelector("#erreur_mail").textContent = "";
   document.querySelector("#erreur_code").textContent = "";
 });
+
+//Evenement pour valider le formulaire et envoyer la requete POST
+document.querySelector("#formulaire").addEventListener("submit", (event) => {
+  event.preventDefault();
+  let input = document.getElementsByTagName("input");
+
+  for (let i = 0; i < input.length; i++) {
+    if (input[i].value == "") {
+      swal("Oups!","Formulaire non valide ! Merci de renseigner correctement le formulaire","warning")
+      return false;
+    }
+  }
+  requestPost()
+  confirmCommand()
+  localStorage.clear()
+  totalPanier()
+});
+
+//pour créer la requete POST avec numero commande et infos contact
+function requestPost() {
+  const idTableau = panier.map(function (product) {return product.id;});
+  let order = {
+    contact: {
+      firstName: document.querySelector("#firstname").value.trim(),
+      lastName: document.querySelector("#name").value.trim(),
+      address: document.querySelector("#adress").value.trim(),
+      city: document.querySelector("#city").value.trim(),
+      email: document.querySelector("#mail").value.trim(),
+    },
+    products: idTableau,
+  };
+  console.log(order);
+
+  const request = new Request(
+    "https://oc-p5-api.herokuapp.com/api/cameras/order",
+    {
+      method: "POST",
+      body: JSON.stringify(order),
+      headers: new Headers({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }),
+    }
+  );
+
+  fetch(request)
+    .then((response) => response.json())
+    .then((response) => {
+      let numCommand = response.orderId;
+      localStorage.setItem("idCommand", JSON.stringify(numCommand));
+    });
+}
+
+// CONFIRMATION DE COMMANDE
+function confirmCommand() {
+  swal("Votre commande a bien été validée, vous allez être redirigé", "", "success");
+  setTimeout(function() {window.location = 'confirmation.html'; }, 3000);
+}
+
+

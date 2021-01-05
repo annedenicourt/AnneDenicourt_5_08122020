@@ -1,15 +1,9 @@
-main a {
-	color: black;
-}
 footer a {
 	color:#fff;
 }
 
 #cart_number{
 	font-weight: bold;
-
-}
-.fa-shopping-cart {
 }
 
 #title_container {
@@ -58,8 +52,7 @@ footer a {
 #bouton_moins {
 	display: none;
 }
-#valid_commande {
-}
+
 #valid_commande a {
 text-decoration: none;
 }
@@ -90,14 +83,6 @@ td img {
 
 #formulaire p {
 	font-weight: bold;
-}
-
-#erreur {
-	display: none;
-}
-
-.erreur_mess {
-	display: none;
 }
 
 #erreur_mail {

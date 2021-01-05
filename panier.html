@@ -49,7 +49,7 @@
                 >PANIER <i class="fas fa-shopping-cart"></i
               ><span id="cart_number"></span></a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">COMMANDE</a></li>
+            <li class="nav-item"><a class="nav-link" href="confirmation.html">COMMANDE</a></li>
           </ul>
         </div>
       </nav>
@@ -96,50 +96,45 @@
       <section id="formulaire" class="container mt-4 pb-4">
         <div class="col">
           <form
-            class="text-center col-12 col-md-8 col-lg-6 mx-auto pb-4 border border-secondary rounded"
+            class="col-12 col-md-8 col-lg-6 text-center mx-auto pb-4 border border-secondary rounded"
           >
             <p class="text-center mt-4">
               Veuillez remplir le formulaire pour finaliser votre commande
             </p>
-            <label for="name">NOM</label>
-            <input type="text" id="name" class="champ" />
-            <br />
-            <div class="erreur_mess">Veuillez renseigner un nom</div>
-            <br />
-            <label for="firstname">PRENOM</label>
-            <input type="text" id="firstname" class="champ" />
-            <br />
-            <div class="erreur_mess">Veuillez renseigner un prénom</div>
-            <br />
-            <label for="adress">ADRESSE</label>
-            <input type="text" id="adress" class="champ" />
-            <br />
-            <div class="erreur_mess">Veuillez renseigner une adresse</div>
-            <br />
-            <label for="mail">E-MAIL</label>
-            <input type="email" id="mail" class="champ" />
-            <br />
-            <div id="erreur_mail"></div>
-            <div class="erreur_mess">Veuillez renseigner une adresse mail</div>
-            <br />
-            <label for="postalcode">CODE POSTAL</label>
-            <input type="text" id="postalcode" class="champ"/>
-            <br />
-            <div id="erreur_code"></div>
-            <div class="erreur_mess">Veuillez renseigner un code postal</div>
-            <br />
-            <label for="city">VIlLE</label>
-            <input type="text" id="city" class="champ" />
-            <br />
-            <div class="erreur_mess">Veuillez renseigner une ville</div>
-            <br />
-            <div id="erreur">
-              <p>
-                Vous n'avez pas rempli correctement les champs du formulaire !
-              </p>
+            <div class="form-group form-inline justify-content-center">
+              <label for="name" class="mr-2">NOM</label>
+              <input type="text" class="champ form-control" id="name" name="name"  />
             </div>
-            <input type="reset" id="rafraichir" value="Effacer" class="btn btn-outline-secondary" />
-            <input type="submit" id="envoi" value="Commander" class="btn btn-success" />
+            
+            <div class="form-group form-inline justify-content-center">
+            <label for="firstname" class="mr-2">PRENOM</label>
+            <input type="text" class="champ form-control" id="firstname" name="firstname"/>
+            </div>
+
+            <div class="form-group form-inline justify-content-center">
+            <label for="adress" class="mr-2">ADRESSE</label>
+            <input type="text" class="champ form-control" id="adress" name="adress" />
+            </div>
+
+            <div class="form-group form-inline justify-content-center">
+              <label for="mail" class="mr-2">E-MAIL</label>
+            <input type="email" class="champ form-control" id="mail" name="mail"  />
+            </div>
+            <div id="erreur_mail"></div>
+            
+            <div class="form-group form-inline justify-content-center">
+              <label for="postalcode" class="mr-2">CODE POSTAL</label>
+            <input type="text" class="champ form-control" id="postalcode" name="postalcode" />
+            </div>
+            <div id="erreur_code"></div>
+
+            <div class="form-group form-inline justify-content-center">
+            <label for="city" class="mr-2">VILLE</label>
+            <input type="text" class="champ form-control" id="city" name="city"  />
+            </div>
+            <br />
+            <input type="reset" id="rafraichir" name="rafraichir" value="Effacer" class="btn btn-outline-secondary" />
+            <input type="submit" id="envoi" name="envoi" value="Commander" class="btn btn-success" />
           </form>
         </div>
       </section>
