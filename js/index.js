@@ -1,11 +1,13 @@
+function getRequest(){
+
 const fetchPromise = fetch("https://oc-p5-api.herokuapp.com/api/cameras");
 const inputJS = document.getElementById("produits");
 
-fetchPromise.then(response => {
-  return response.json();
+fetchPromise.then(response => {//on exécute la promesse
+  return response.json(); // on récupère le résultat sous format json
 })
 .then((data => {
-  data.forEach((item)  => {
+  data.forEach((item)  => { //pour chaque item récupéré de l'API, on crée une constante name, price_id etc..
     const { name, price, _id, description, imageUrl } = item;
             //puis on affiche ces informations sous forme HTML
             inputJS.innerHTML +=
@@ -24,3 +26,5 @@ fetchPromise.then(response => {
                 `
             })
 }))
+}
+getRequest()

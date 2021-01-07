@@ -20,12 +20,11 @@ function showCommand() {
   } else {
     document.getElementById("confirmation").style.display = "none";
     document.getElementById("no_command").innerHTML += `
-    <div class="container col-10 text-center border shadow bg-white rounded p-4 ">
+    <div id="bg_confirm" class="container col-10 text-center border shadow bg-white rounded p-4 ">
     <h3 class="mb-4">Vous n'avez pas de commande en cours</h3>
     <h4><a href="index.html" class="text-success">Découvrez notre gamme d'appareils-photo</a></h4>
     </div>
-
-`;
+    `;
   }
 }
 

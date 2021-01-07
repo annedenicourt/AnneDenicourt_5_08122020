@@ -149,8 +149,8 @@ document.querySelector("#formulaire").addEventListener("submit", (event) => {
   event.preventDefault();
   let input = document.getElementsByTagName("input");
 
-  for (let i = 0; i < input.length; i++) {
-    if (input[i].value == "") {
+  for (let i = 0; i < input.length; i++) { //boucle pour vérifier si chaque champ a été renseigné
+    if (input[i].value == "") { //si un des champs est vide, envoi message erreur 
       swal("Oups!","Formulaire non valide ! Merci de renseigner correctement le formulaire","warning")
       return false;
     }

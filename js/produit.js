@@ -1,6 +1,3 @@
-// PRODUITS
-let article = null;
-
 //Appel URL + API + fonctions pour afficher le produit
 function ajoutContent () {
   let id = new URL(window.location).searchParams.get('id')
@@ -13,7 +10,7 @@ fetch(`${"https://oc-p5-api.herokuapp.com/api/cameras"}/${id}`)
         console.log(article);        
     })
 }
-//ajout lentilles pour chaque item renseignée dans l'API
+//Ajout lentilles pour chaque item renseignée dans l'API
 function ajoutLenses(article) {
   for (let i = 0; i < article.lenses.length; i++) {
   document.getElementById("lense_select").innerHTML += `<option value="${article.lenses[i]}">${article.lenses[i]}</option>`
@@ -34,7 +31,7 @@ function ajoutHTML(article) {
 //Ajout produit au panier
 function ajoutPanier() {
     let lentilles = document.querySelector('select').value; //Récupère la valeur de l'objectif choisi
-    if (lentilles == "") {
+    if (lentilles == "") { //si aucune lentille choisie, affichage message erreur
       swal("Oups!", "Vous devez choisir un objectif", "warning");
     } else {
         const panier = JSON.parse(localStorage.getItem("panier")) || [] //On extrait notre json
@@ -50,8 +47,13 @@ function ajoutPanier() {
         })
         window.localStorage.setItem("panier", JSON.stringify(panier))
         console.log("Le produit a été ajouté au panier");
-        //swal("Super !", "L'article a été ajouté au panier", "success");
-        document.getElementById("pop_up").innerHTML +=
+        showModal()
+      }
+}
+
+//Affichage message pour confirmer ajout panier et rediriger vers panier ou page produits
+function showModal() {
+  document.getElementById("pop_up").innerHTML +=
         `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -72,7 +74,6 @@ function ajoutPanier() {
             </div>
           </div>
         </div>`
-      }
 }
 
 ajoutContent();
