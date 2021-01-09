@@ -34,8 +34,8 @@ function ajoutPanier() {
     if (lentilles == "") { //si aucune lentille choisie, affichage message erreur
       swal("Oups!", "Vous devez choisir un objectif", "warning");
     } else {
-        const panier = JSON.parse(localStorage.getItem("panier")) || [] //On extrait notre json
-        panier.push({
+        const panier = JSON.parse(localStorage.getItem("panier")) || [] //On extrait notre json ou on crée un tableau si le panier est vide
+        panier.push({ //pour chaque article, on pousse les infos suivantes dans le panier
           image : article.imageUrl,
           name : article.name,
           id :article._id,
@@ -57,23 +57,20 @@ function showModal() {
         `<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+              <button type="button" class="close text-right pr-2" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+              <div id="bg_modal" class="modal-body text-center">
+                <div class="font-weight-bold mb-4">Super ! <br/>Vous avez ajouté <br/>un produit au panier</div>
               </div>
-            <div class="modal-body text-center">
-              <i class="fas fa-camera-retro fa-2x mb-4"></i>
-              <div class="font-weight-bold mb-4">Super !</div>
-              <div class="font-weight-bold">Vous avez ajouté un produit au panier</div>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button id="bouton_modal1" type="button" class="btn btn-success"><a href="index.html">Continuer vos achats</a></button>
-              <button id="bouton_modal2" type="button" class="btn btn-secondary"><a href="panier.html">Voir votre panier</a></button>
-            </div>
+              <div class="modal-footer justify-content-center">
+                <button id="bouton_modal1" type="button" class="btn btn-success"><a href="index.html">Continuer vos achats</a></button>
+                <button id="bouton_modal2" type="button" class="btn btn-secondary"><a href="panier.html">Voir votre panier</a></button>
+              </div>
             </div>
           </div>
         </div>`
 }
 
 ajoutContent();
+cartNumber()

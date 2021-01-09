@@ -1,9 +1,12 @@
-body {
+h2 {
+	font-family: 'Rajdhani', sans-serif;
+}
+
+main {
 	background-image: url("bg_body.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 }
-
 footer a {
 	color:#fff;
 }
@@ -14,7 +17,7 @@ footer a {
 
 #title_container {
 	text-align: right;
-	padding-top: 20px;
+	padding-top: 30px;
 	padding-right: 30px;
 }
 
@@ -42,6 +45,12 @@ footer a {
 .prix_produit{
 	font-weight: bold;
 	font-size: 1.5em;
+}
+
+#bg_modal {
+	background-image: url("bg_modal.jpg");
+	background-size: cover;
+	height: 250px;
 }
 
 /* BOUTONS*/
@@ -81,6 +90,7 @@ td img {
 
 #panier_vide {
 	font-size: 2em;
+
 }
 
 /* FORMULAIRE*/
@@ -101,6 +111,11 @@ td img {
 
 #no_command {
 	height: 500px;
+	display: flex;
+	align-items: center;
+}
+
+#confirmation {
 	display: flex;
 	align-items: center;
 }
@@ -143,6 +158,7 @@ header {
 	padding-right: 0;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 #title_container h1{
