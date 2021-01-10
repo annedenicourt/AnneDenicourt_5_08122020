@@ -20,7 +20,7 @@ function showCommand() {
     document.getElementById("no_command").innerHTML += `
     <div class="container col-10 text-center border shadow bg-white rounded p-4 ">
       <h3 class="mb-4">Vous n'avez pas de commande en cours</h3>
-      <h4><a href="index.html" class="text-success">Découvrez notre gamme d'appareils-photo</a></h4>
+      <button type="button" class="btn btn-success p-2"><a href="index.html" id="bouton_command" class="text-white">Découvrez notre gamme d'appareils-photo</a></button>
     </div>
     `;
   }

@@ -79,6 +79,12 @@ text-decoration: none;
 	color:#fff;
 }
 
+#bouton_command {
+	text-decoration: none;
+	color: #fff;
+	font-size: 1.5em;
+}
+
 /* PANIER*/
 
 #tableau_panier td {

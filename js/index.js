@@ -9,6 +9,7 @@ fetchPromise.then(response => {//on exécute la promesse
 .then((data => {
   data.forEach((item)  => { //pour chaque item récupéré de l'API, on crée une constante name, price_id etc..
     const { name, price, _id, description, imageUrl } = item;
+    //console.log(item)
             //puis on affiche ces informations sous forme HTML
             inputJS.innerHTML +=`
             <div class="container col-md-6 col-lg-4">
@@ -18,12 +19,13 @@ fetchPromise.then(response => {//on exécute la promesse
                      <h3 class="card-title">${name}</h3>
                      <span>${price/100}€</span></p>
                      <p class="card-text product-description">${description}</p>
-                     <div class="text-center mt-4" ><a id="bouton" type="button" class="btn btn-secondary text-white" onclick="window.location.href = 'produit.html?id=${_id}';">En savoir plus</a></div>
+                     <div class="text-center mt-4" ><a id="bouton" type="button" class="btn btn-secondary text-white" onclick="window.location.href = 'produit.html?id=${_id}'">En savoir plus</a></div>
                   </div>
                </div>
             </div>`
    })
 }))
+
 }
 getRequest()
 cartNumber()

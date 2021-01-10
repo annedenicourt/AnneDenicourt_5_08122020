@@ -46,6 +46,7 @@ function ajoutPanier() {
           subTotal : article.price/100*1
         })
         window.localStorage.setItem("panier", JSON.stringify(panier))
+        //console.log(panier)
         console.log("Le produit a été ajouté au panier");
         showModal()
       }

@@ -78,6 +78,7 @@ function quantitePlus(index) {
   let sousTotal = document.getElementById(`sous_total${index}`);
   let ajoutTotal = panier[index].price * panier[index].quantite;
   sousTotal.textContent = `${ajoutTotal} €`; //on met à jour le sous-total dans le tableau
+  //console.log(ajoutQuantite)
   localStorage.setItem("panier", JSON.stringify(panier)); // on met à jour le localstorage
   totalPanier(); //on met à jour le total panier
   if (ajoutQuantite > 1) {
@@ -92,6 +93,7 @@ function quantiteMoins(index) {
   let sousTotal = document.getElementById(`sous_total${index}`);
   let ajoutTotal = panier[index].price * panier[index].quantite;
   sousTotal.textContent = `${ajoutTotal} €`; //on met à jour le sous-total dans le tableau
+  //console.log(retraitQuantite)
   localStorage.setItem("panier", JSON.stringify(panier)); // on met à jour le localstorage
   totalPanier(); //on met à jour le total panier
   if (retraitQuantite <= 1) {
@@ -175,6 +177,7 @@ function requestPost() {
     .then((response) => response.json())
     .then((response) => { //on récupère la réponse de l'API pour obtenir numéro de commande
       let numCommand = response.orderId;
+      //console.log(numCommand)
       localStorage.setItem("idCommand", JSON.stringify(numCommand)); // on met à jour le localstorage avec numero de commande
       localStorage.setItem("infosOrder",JSON.stringify(order)); // on met à jour le localstorage avec infos de commande
     });
