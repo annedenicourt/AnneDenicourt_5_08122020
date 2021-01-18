@@ -5,19 +5,19 @@ fetch(`${"https://oc-p5-api.herokuapp.com/api/cameras"}/${id}`)
     .then(response => response.json()).then (data => {
         
         article = data
-        ajoutHTML(article)
-        ajoutLenses(article)
+        ajoutHTML()
+        ajoutLenses()
         console.log(article);        
     })
 }
 //Ajout lentilles pour chaque item renseignée dans l'API
-function ajoutLenses(article) {
+function ajoutLenses() {
   for (let i = 0; i < article.lenses.length; i++) {
   document.getElementById("lense_select").innerHTML += `<option value="${article.lenses[i]}">${article.lenses[i]}</option>`
   }
 }
 // Présentation produit HTML
-function ajoutHTML(article) {
+function ajoutHTML() {
   document.getElementById('focus_produit').innerHTML += 
   `
     <div class="affichage_produit">

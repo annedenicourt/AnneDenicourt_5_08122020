@@ -8,10 +8,7 @@ if (panier) {
 }
 //Boucle pour importer données de chaque article panier
 function ligneTableau() {
-  article = panier;
-  article.forEach((result, index) => {
-    infosHTML(result, index);
-  });
+  panier.forEach(function(result, index) {infosHTML(result, index);});
   totalPanier();
   cartNumber();
 }
@@ -35,7 +32,7 @@ function infosHTML(result, index) {
 //calcul et affichage du prix total panier
 function totalPanier() {
   let total = 0;
-  panier.forEach((result, index) => {
+  panier.forEach(function(result, index) {
     total = total + panier[index].price * panier[index].quantite;
     console.log(total);
   });
@@ -104,7 +101,7 @@ function quantiteMoins(index) {
 // FORMULAIRE + REQUETE POST
 
 //Evenement pour vérifier le champ mail en enlevant le focus
-document.querySelector("#mail").addEventListener("blur", () => {
+document.querySelector("#mail").addEventListener("blur", function() {
   const mail = document.querySelector("#mail").value;
   const regexEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; //Utilisation de regex
   if (!regexEmail.test(mail)) {
@@ -114,7 +111,7 @@ document.querySelector("#mail").addEventListener("blur", () => {
 });
 
 //Evenement pour vérifier le champ postalcode en enlevant le focus
-document.querySelector("#postalcode").addEventListener("blur", () => {
+document.querySelector("#postalcode").addEventListener("blur", function() {
   const postalCode = document.querySelector("#postalcode").value;
   const regexEmail = /[0-9]{5}/; //Utilisation de regex
   if (!regexEmail.test(postalCode)) {
@@ -124,13 +121,13 @@ document.querySelector("#postalcode").addEventListener("blur", () => {
 });
 
 //Evenement pour effacer le formulaire
-document.querySelector("#rafraichir").addEventListener("click", () => {
+document.querySelector("#rafraichir").addEventListener("click", function() {
   document.querySelector("#erreur_mail").textContent = "";
   document.querySelector("#erreur_code").textContent = "";
 });
 
 //Evenement pour valider le formulaire et envoyer la requete POST
-document.querySelector("#formulaire").addEventListener("submit", (event) => {
+document.querySelector("#formulaire").addEventListener("submit", function(event){
   event.preventDefault();
   let input = document.getElementsByTagName("input");
 
