@@ -3,7 +3,7 @@ function ajoutContent () {
   let id = new URL(window.location).searchParams.get('id')
 fetch(`${"https://oc-p5-api.herokuapp.com/api/cameras"}/${id}`)
     .then(response => response.json()).then (data => {
-        
+      
         article = data
         ajoutHTML()
         ajoutLenses()
