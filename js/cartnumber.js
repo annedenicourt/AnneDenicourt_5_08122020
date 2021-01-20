@@ -4,7 +4,7 @@ function cartNumber() {
 
   if (panier) {
     let inCart = 0;
-    panier.forEach((result, index) => {
+    panier.forEach(() => {
       inCart = inCart + 1;
     });
     localStorage.setItem("inCart", inCart);

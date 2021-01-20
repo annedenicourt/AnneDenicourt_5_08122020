@@ -19,9 +19,9 @@ function infosHTML(result, index) {
       <tr id="ligne_tableau">
         <td class="text-center"><img src="${result.image}"  alt="appareil ${result.name}"> <br/> ${result.name} <br/> Objectif : ${result.lenses}</td>
         <td class="text-center">
-          <i onclick="quantiteMoins(${index})" id="bouton_moins" class="fas fa-caret-square-left"></i>
+          <button disabled="disabled" onclick="quantiteMoins(${index})" id="bouton_moins${index}" class="btn btn-secondary btn-sm">-</button>
           <span id="quantite_nombre${index}" class="quantite_produit">${result.quantite}</span>
-          <i onclick="quantitePlus(${index})" id="bouton_plus${index}" class="fas fa-caret-square-right"></i>
+          <button onclick="quantitePlus(${index})" id="bouton_plus${index}" class="btn btn-secondary btn-sm">+</button>
         </td>
         <td id="prix_unite${index}" class="text-center">${result.price + " €"}</td>
         <td id="sous_total${index}"class="subtotal text-center">${result.subTotal + " €"}</td>
@@ -79,7 +79,7 @@ function quantitePlus(index) {
   localStorage.setItem("panier", JSON.stringify(panier)); // on met à jour le localstorage
   totalPanier(); //on met à jour le total panier
   if (ajoutQuantite > 1) {
-    document.getElementById("bouton_moins").style.display = "inline";
+    document.getElementById(`bouton_moins${index}`).removeAttribute("disabled");
   }
 }
 //pour retirer quantite dans le panier
@@ -94,7 +94,7 @@ function quantiteMoins(index) {
   localStorage.setItem("panier", JSON.stringify(panier)); // on met à jour le localstorage
   totalPanier(); //on met à jour le total panier
   if (retraitQuantite <= 1) {
-    document.getElementById("bouton_moins").style.display = "none";
+    document.getElementById(`bouton_moins${index}`).setAttribute("disabled", "disabled");
   }
 }
 

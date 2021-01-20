@@ -9,7 +9,6 @@ fetchPromise.then(response => {//on exécute la promesse
 .then((data => {
   data.forEach((item)  => { //pour chaque item récupéré de l'API, on crée une constante name, price_id etc..
     const { name, price, _id, description, imageUrl } = item;
-    //console.log(item)
             //puis on affiche ces informations sous forme HTML
             inputJS.innerHTML +=`
             <div class="container col-md-6 col-lg-4">
