@@ -21,7 +21,7 @@ Le code devra utiliser les balises sémantiques et ne doit contenir aucune erreu
 
 Le site devra être compatible avec les dernières versions de Chrome et Firefox.
 
-Le code devra être accessible sur Git et le site sera déployer sur GitHub Pages ou GitLab Pages.
+Le code devra être accessible sur Git et le site sera déployé sur GitHub Pages ou GitLab Pages.
 
 # Livrables attendus
 
