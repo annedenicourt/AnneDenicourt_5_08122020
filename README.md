@@ -4,7 +4,7 @@ Ceci est le troisième projet OPENCLASSROOMS de Anne Denicourt
 
 # Objectif du projet
 
-Construire un site e-commerce
+Construire un site e-commerce (partie front-end)
 
 # Contraintes techniques
 
